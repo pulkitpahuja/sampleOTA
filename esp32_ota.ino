@@ -11,7 +11,7 @@ const char * password = "pulkitpahuja2506";
 
 
 String FirmwareVer = {
-  "2.5"
+  "2.6"
 };
 #define URL_fw_Version "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/bin_version.txt"
 #define URL_fw_Bin "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/fw.bin"
