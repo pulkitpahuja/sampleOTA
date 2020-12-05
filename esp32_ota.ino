@@ -11,7 +11,7 @@ const char * password = "pulkitpahuja2506";
 
 
 String FirmwareVer = {
-  "2.6"
+  "2.7"
 };
 #define URL_fw_Version "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/bin_version.txt"
 #define URL_fw_Bin "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/fw.bin"
@@ -34,8 +34,7 @@ void repeatedCall() {
   if ((currentMillis - previousMillis) >= interval) {
     // save the last time you blinked the LED
     previousMillis = currentMillis;
-    digitalWrite(LED_BUILTIN, lenef);
-    lenef=!lenef;
+   
     if (FirmwareVersionCheck()) {
       firmwareUpdate();
     }
@@ -43,6 +42,8 @@ void repeatedCall() {
 
   if ((currentMillis - previousMillis_2) >= mini_interval) {
     previousMillis_2 = currentMillis;
+     digitalWrite(LED_BUILTIN, lenef);
+    lenef=!lenef;
     Serial.print("idle loop...");
     Serial.print(num++);
     Serial.print(" Active fw version:");
