@@ -11,7 +11,7 @@ const char * password = "pulkitpahuja2506";
 
 
 String FirmwareVer = {
-  "2.4"
+  "2.5"
 };
 #define URL_fw_Version "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/bin_version.txt"
 #define URL_fw_Bin "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/fw.bin"
@@ -27,16 +27,20 @@ unsigned long previousMillis = 0; // will store last time LED was updated
 unsigned long previousMillis_2 = 0;
 const long interval = 60000;
 const long mini_interval = 1000;
+bool lenef=HIGH;
 void repeatedCall() {
   static int num=0;
   unsigned long currentMillis = millis();
   if ((currentMillis - previousMillis) >= interval) {
     // save the last time you blinked the LED
     previousMillis = currentMillis;
+    digitalWrite(LED_BUILTIN, lenef);
+    lenef=!lenef;
     if (FirmwareVersionCheck()) {
       firmwareUpdate();
     }
   }
+
   if ((currentMillis - previousMillis_2) >= mini_interval) {
     previousMillis_2 = currentMillis;
     Serial.print("idle loop...");
@@ -92,7 +96,6 @@ void loop() {
     firmwareUpdate();
     button_boot.pressed = false;
   }
-  Serial.println("2");
   repeatedCall();
 }
 
