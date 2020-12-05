@@ -11,7 +11,7 @@ const char * password = "pulkitpahuja2506";
 
 
 String FirmwareVer = {
-  "2.2"
+  "2.4"
 };
 #define URL_fw_Version "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/bin_version.txt"
 #define URL_fw_Bin "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/fw.bin"
@@ -92,6 +92,7 @@ void loop() {
     firmwareUpdate();
     button_boot.pressed = false;
   }
+  Serial.println("2");
   repeatedCall();
 }
 
