@@ -11,7 +11,7 @@ const char * password = "pulkitpahuja2506";
 
 
 String FirmwareVer = {
-  "2.7"
+  "2.8"
 };
 #define URL_fw_Version "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/bin_version.txt"
 #define URL_fw_Bin "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/fw.bin"
@@ -26,7 +26,7 @@ int FirmwareVersionCheck();
 unsigned long previousMillis = 0; // will store last time LED was updated
 unsigned long previousMillis_2 = 0;
 const long interval = 60000;
-const long mini_interval = 1000;
+const long mini_interval = 5000;
 bool lenef=HIGH;
 void repeatedCall() {
   static int num=0;
