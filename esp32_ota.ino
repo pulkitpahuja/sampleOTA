@@ -11,7 +11,7 @@ const char * password = "pulkitpahuja2506";
 
 
 String FirmwareVer = {
-  "2.9"
+  "2.7"
 };
 #define URL_fw_Version "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/bin_version.txt"
 #define URL_fw_Bin "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/fw.bin"
@@ -24,7 +24,7 @@ int FirmwareVersionCheck();
 unsigned long previousMillis = 0; // will store last time LED was updated
 unsigned long previousMillis_2 = 0;
 const long interval = 60000;
-const long mini_interval = 2000;
+const long mini_interval = 1000;
 bool lenef=HIGH;
 void repeatedCall() {
   static int num=0;
@@ -140,10 +140,6 @@ int FirmwareVersionCheck(void) {
   fwurl += "?";
   fwurl += String(rand());
   Serial.println(fwurl);
-  WiFiClientSecure * client = new WiFiClientSecure;
-
-  if (client) 
-  {
     // Add a scoping block for HTTPClient https to make sure it is destroyed before WiFiClientSecure *client is 
     HTTPClient https;
 
@@ -163,8 +159,7 @@ int FirmwareVersionCheck(void) {
       }
       https.end();
     }
-    delete client;
-  }
+
       
   if (httpCode == HTTP_CODE_OK) // if version received
   {
