@@ -11,13 +11,11 @@ const char * password = "pulkitpahuja2506";
 
 
 String FirmwareVer = {
-  "2.8"
+  "2.9"
 };
 #define URL_fw_Version "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/bin_version.txt"
 #define URL_fw_Bin "https://raw.githubusercontent.com/pulkitpahuja/sampleOTA/master/fw.bin"
 
-//#define URL_fw_Version "http://cade-make.000webhostapp.com/version.txt"
-//#define URL_fw_Bin "http://cade-make.000webhostapp.com/firmware.bin"
 
 void connect_wifi();
 void firmwareUpdate();
@@ -26,7 +24,7 @@ int FirmwareVersionCheck();
 unsigned long previousMillis = 0; // will store last time LED was updated
 unsigned long previousMillis_2 = 0;
 const long interval = 60000;
-const long mini_interval = 5000;
+const long mini_interval = 2000;
 bool lenef=HIGH;
 void repeatedCall() {
   static int num=0;
@@ -117,7 +115,6 @@ void connect_wifi() {
 
 void firmwareUpdate(void) {
   WiFiClientSecure client;
-  client.setCACert(rootCACertificate);
   httpUpdate.setLedPin(LED_BUILTIN, LOW);
   t_httpUpdate_return ret = httpUpdate.update(client, URL_fw_Bin);
 
@@ -147,12 +144,10 @@ int FirmwareVersionCheck(void) {
 
   if (client) 
   {
-    client -> setCACert(rootCACertificate);
-
     // Add a scoping block for HTTPClient https to make sure it is destroyed before WiFiClientSecure *client is 
     HTTPClient https;
 
-    if (https.begin( * client, fwurl)) 
+    if (https.begin(fwurl)) 
     { // HTTPS      
       Serial.print("[HTTPS] GET...\n");
       // start connection and send HTTP header
